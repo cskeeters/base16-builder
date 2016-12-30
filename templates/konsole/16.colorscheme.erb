@@ -1,0 +1,86 @@
+<%
+# KDE4's konsole doesn't support setting color values like xterm
+# https://bugs.kde.org/show_bug.cgi?id=344181
+# To use vim with vim-base16 in konsole, we must use this 16-color
+# pallet version (crafted similarly to iterm2/dark.itermcolors.erb)
+# and be sure to NOT set base16colorspace=256 in vimrc.
+
+# To have a vimrc that supports konsole and terminals that do work with
+# base-shell, we can set TERM=konsole only in konsole and only use 256
+# colorspace when TERM is not konsole.
+
+# if $TERM !~# "konsole.*"
+#     " As a work around for the following bugs in kde4's konsole:
+#     "   use the output of 16.colorscheme.rb and don't set base16colorspace.
+#     "   base-shell script will not be called
+#     " https://github.com/chriskempson/base16-shell/issues/31
+#     " https://bugs.kde.org/show_bug.cgi?id=344181
+#     let base16colorspace=256
+# endif
+
+@ratio = 0
+%>
+[Background]
+Color=<%= @base["00"]["rgb"].join(',') %>
+
+[BackgroundIntense]
+Color=<%= tint(@base["00"]["rgb"], @ratio).join(',') %>
+
+[Color0] <%# Black %>
+Color=<%= @base["00"]["rgb"].join(',') %>
+
+[Color0Intense]
+Color=<%= tint(@base["03"]["rgb"], @ratio).join(',') %>
+
+[Color1] <%# Red %>
+Color=<%= @base["08"]["rgb"].join(',') %>
+
+[Color1Intense]
+Color=<%= tint(@base["09"]["rgb"], @ratio).join(',') %>
+
+[Color2] <%# Green %>
+Color=<%= @base["0B"]["rgb"].join(',') %>
+
+[Color2Intense]
+Color=<%= tint(@base["01"]["rgb"], @ratio).join(',') %>
+
+[Color3] <%# Yellow %>
+Color=<%= @base["0A"]["rgb"].join(',') %>
+
+[Color3Intense]
+Color=<%= tint(@base["02"]["rgb"], @ratio).join(',') %>
+
+[Color4] <%# Blue %>
+Color=<%= @base["0D"]["rgb"].join(',') %>
+
+[Color4Intense]
+Color=<%= tint(@base["04"]["rgb"], @ratio).join(',') %>
+
+[Color5] <%# Magenta %>
+Color=<%= @base["0E"]["rgb"].join(',') %>
+
+[Color5Intense]
+Color=<%= tint(@base["06"]["rgb"], @ratio).join(',') %>
+
+[Color6] <%# Cyan %>
+Color=<%= @base["0C"]["rgb"].join(',') %>
+
+[Color6Intense]
+Color=<%= tint(@base["0F"]["rgb"], @ratio).join(',') %>
+
+[Color7] <%# White %>
+Color=<%= @base["05"]["rgb"].join(',') %>
+
+[Color7Intense]
+Color=<%= tint(@base["07"]["rgb"], @ratio).join(',') %>
+
+[Foreground]
+Color=<%= @base["05"]["rgb"].join(',') %>
+
+[ForegroundIntense]
+Color=<%= tint(@base["05"]["rgb"], @ratio).join(',') %>
+
+[General]
+Description=Base16 <%= @scheme %> 16
+Opacity=1
+Wallpaper=
